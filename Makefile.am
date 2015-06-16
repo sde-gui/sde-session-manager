@@ -2,7 +2,7 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 NULL=
 
-SUBDIRS=lxsession lxsession-logout po man
+SUBDIRS=lxsession lxsession-logout po
 
 imagedir=$(datadir)/lxsession/images
 image_DATA= \
