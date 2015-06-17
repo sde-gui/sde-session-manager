@@ -271,11 +271,8 @@ usage:
 
 int main(int argc, char** argv)
 {
-    const char *pid_str;
     char str[ 16 ];
 	GKeyFile* kf;
-
-    pid_str = g_getenv(pid_env);
 
     display_name = g_getenv( display_env );
     if( ! display_name )
