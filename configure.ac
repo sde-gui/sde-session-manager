@@ -23,13 +23,6 @@ LT_INIT
 AC_CHECK_FUNC([mkstemp],
    AC_DEFINE(HAS_MKSTEMP,1,[Define to 1 if you have the 'mkstemp' function.]))
 
-AC_ARG_ENABLE(man,
-       [AC_HELP_STRING([--enable-man],
-               [regenerate roff man pages from Docbook @<:@default=no@:>@])],
-       [enable_man="${enableval}"],
-       [enable_man=no]
-)
-
 AC_ARG_ENABLE(more_warnings,
        [AC_HELP_STRING([--enable-more-warnings],
                [Add more warnings @<:@default=no@:>@])],
@@ -104,21 +97,6 @@ AC_SUBST(GETTEXT_PACKAGE)
 AM_GLIB_GNU_GETTEXT
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
 
-if test x"$enable_man" = x"yes"; then
-	AC_PATH_PROG([XSLTPROC], [xsltproc])
-	if test -z "$XSLTPROC"; then
-		enable_man=no
-	fi
-
-	dnl check for DocBook DTD and stylesheets in the local catalog.
-	JH_CHECK_XML_CATALOG([-//OASIS//DTD DocBook XML V4.1.2//EN],
-		[DocBook XML DTD V4.1.2], [], enable_man=no)
-	JH_CHECK_XML_CATALOG([http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl],
-		[DocBook XSL Stylesheets >= 1.70.1], [], enable_man=no)
-fi
-
-AM_CONDITIONAL(ENABLE_REGENERATE_MAN, test "x$enable_man" != "xno")
-
 AC_OUTPUT([
   Makefile
   lxsession/Makefile
@@ -131,7 +109,6 @@ echo LXSession.................................... : Version $VERSION
 echo
 echo Prefix....................................... : $prefix
 echo Linux DBUS support........................... : $use_dbus
-echo Man pages generation support................. : $enable_man
 echo
 echo The binary will be installed in $prefix/bin
 echo
