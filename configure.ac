@@ -35,7 +35,7 @@ if test x"$enable_more_warnings" = x"yes"; then
 fi
 AC_SUBST(ADDITIONAL_FLAGS)
 
-gtk_modules="gtk+-2.0 >= 2.6.0"
+gtk_modules="gtk+-2.0 >= 2.24.0"
 PKG_CHECK_MODULES(GTK, [$gtk_modules])
 AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)

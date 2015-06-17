@@ -328,11 +328,7 @@ gboolean expose_event(GtkWidget * widget, GdkEventExpose * event, GdkPixbuf * pi
     {
         /* Copy the appropriate rectangle of the root window pixmap to the drawing area.
          * All drawing areas are immediate children of the toplevel window, so the allocation yields the source coordinates directly. */
-#if GTK_CHECK_VERSION(2,14,0)
        cairo_t * cr = gdk_cairo_create (gtk_widget_get_window(widget));
-#else
-       cairo_t * cr = gdk_cairo_create (widget->window);
-#endif
        gdk_cairo_set_source_pixbuf (
            cr,
            pixbuf,
