@@ -264,8 +264,6 @@ static gboolean create_xsettings_managers()
 	managers = g_new (XSettingsManager *, n_screens + 1);
 	for( i = 0; i < n_screens; ++i )
 	{
-		Screen *screen;
-		screen = ScreenOfDisplay( dpy, i );
 		managers [i] = xsettings_manager_new ( dpy, i, terminate_cb, &terminated);
 		if(!managers [i])
 		{
