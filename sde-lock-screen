@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# lxlock - try to lock the screen
+# sde-lock-screen - try to lock the screen
 #
 # Copyright (c) 2010 Guido Berhoerster <gber@opensuse.org>
 #

@@ -13,7 +13,7 @@ image_DATA= \
 	images/gnome-session-suspend.png \
 	images/gnome-session-switch.png
 
-scripts=     lxlock
+scripts=     sde-lock-screen
 bin_SCRIPTS= $(scripts)
 
 EXTRA_DIST = \

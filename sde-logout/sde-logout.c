@@ -88,12 +88,12 @@ static GtkPositionType get_banner_position(void);
 static GdkPixbuf * get_background_pixbuf(void);
 gboolean expose_event(GtkWidget * widget, GdkEventExpose * event, GdkPixbuf * pixbuf);
 
-/* Try to run lxlock command in order to lock the screen, return TRUE on
+/* Try to run sde-lock-screen command in order to lock the screen, return TRUE on
  * success, FALSE if command execution failed
  */
 static gboolean lock_screen(void)
 {
-    if (!g_spawn_command_line_async("lxlock", NULL))
+    if (!g_spawn_command_line_async("sde-lock-screen", NULL))
     {
         return TRUE;
     }
