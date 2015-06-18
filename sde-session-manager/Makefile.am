@@ -1,18 +1,18 @@
 NULL=
 
-bin_PROGRAMS = lxsession
+bin_PROGRAMS = sde-session-manager
 
-lxsession_CFLAGS = $(GLIB_CFLAGS) $(X11_CFLAGS) \
+sde_session_manager_CFLAGS = $(GLIB_CFLAGS) $(X11_CFLAGS) \
 				$(ADDITIONAL_FLAGS) \
 				-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
-				-Werror-implicit-function-declaration
+				-Werror-implicit-function-declaration \
 				$(NULL)
 
-lxsession_LDADD = $(GLIB_LIBS) $(X11_LIBS)
+sde_session_manager_LDADD = $(GLIB_LIBS) $(X11_LIBS)
 
-lxsession_SOURCES = \
-	lxsession.c \
-	lxsession.h \
+sde_session_manager_SOURCES = \
+	sde-session-manager.c \
+	sde-session-manager.h \
 	xdg-autostart.c \
 	xdg-autostart.h \
 	xevent.c \

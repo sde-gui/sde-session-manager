@@ -1,5 +1,5 @@
 AC_PREREQ([2.57])
-AC_INIT(lxsession,[0.4.6.1], [],lxsession)
+AC_INIT(sde-session-manager,[0.4.6.1])
 AM_INIT_AUTOMAKE([1.11 -Wall -Werror foreign])
 
 # Support silent build rules. Disable by either passing --disable-silent-rules
@@ -79,15 +79,15 @@ do
     echo $lang >> $srcdir/po/LINGUAS
 done
 
-GETTEXT_PACKAGE=lxsession
+GETTEXT_PACKAGE=sde-session-manager
 AC_SUBST(GETTEXT_PACKAGE)
 AM_GLIB_GNU_GETTEXT
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [Gettext package.])
 
 AC_OUTPUT([
   Makefile
-  lxsession/Makefile
-  lxsession-logout/Makefile
+  sde-session-manager/Makefile
+  sde-logout/Makefile
   po/Makefile.in
 ])
 

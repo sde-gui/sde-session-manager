@@ -2,9 +2,9 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 NULL=
 
-SUBDIRS=lxsession lxsession-logout po
+SUBDIRS=sde-session-manager sde-logout po
 
-imagedir=$(datadir)/lxsession/images
+imagedir=$(datadir)/sde-session-manager/images
 image_DATA= \
 	images/system-shutdown.png \
 	images/system-log-out.png \

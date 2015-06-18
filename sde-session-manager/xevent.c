@@ -28,7 +28,7 @@
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 
-#include "lxsession.h"
+#include "sde-session-manager.h"
 #include "settings-daemon.h"
 
 Display* dpy = NULL;

@@ -33,7 +33,7 @@
 #include <string.h>
 #include <locale.h>
 
-#include "lxsession.h"
+#include "sde-session-manager.h"
 #include "xevent.h"
 #include "xsettings-manager.h"
 #include "xutils.h"

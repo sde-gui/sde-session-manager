@@ -1,6 +1,4 @@
 /*
- *      lxsession.c
- *
  *      Copyright 2008 PCMan <pcman.tw@gmail.com>
  *
  *      This program is free software; you can redistribute it and/or modify
@@ -35,7 +33,7 @@
 
 #include <wordexp.h> /* for shell expansion */
 
-#include "lxsession.h"
+#include "sde-session-manager.h"
 #include "xevent.h"
 #include "settings-daemon.h"
 #include "xdg-autostart.h"
@@ -56,7 +54,7 @@ static char sm_env[] = "SESSION_MANAGER";
 static char display_env[] = "DISPLAY";
 static char pid_env[] = "_LXSESSION_PID";
 
-static char prog_name[]="lxsession";
+static char prog_name[]="sde-session-manager";
 static char autostart_filename[]="autostart";
 
 const char *session_name = NULL;

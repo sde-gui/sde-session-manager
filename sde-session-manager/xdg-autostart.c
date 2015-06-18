@@ -30,7 +30,7 @@
 #include <string.h>
 
 static const char DesktopEntry[] = "Desktop Entry";
-extern const char* de_name; /* defined in lxsession.c */
+extern const char* de_name; /* defined in sde-session-manager.c */
 
 #if 0
 /*
