@@ -65,10 +65,6 @@ typedef struct {
     int reboot_ConsoleKit : 1;		/* Reboot is available via ConsoleKit */
     int suspend_UPower : 1;		/* Suspend is available via UPower */
     int hibernate_UPower : 1;		/* Hibernate is available via UPower */
-    int shutdown_HAL : 1;		/* Shutdown is available via HAL */
-    int reboot_HAL : 1;			/* Reboot is available via HAL */
-    int suspend_HAL : 1;		/* Suspend is available via HAL */
-    int hibernate_HAL : 1;		/* Hibernate is available via HAL */
     int switch_user_GDM : 1;		/* Switch User is available via GDM */
     int switch_user_KDM : 1;		/* Switch User is available via KDM */
     int ltsp : 1;			/* Shutdown and reboot is accomplished via LTSP */
@@ -185,8 +181,6 @@ static void shutdown_clicked(GtkButton * button, HandlerContext * handler_contex
     }
     else if (handler_context->shutdown_ConsoleKit)
         error_result = dbus_ConsoleKit_Stop();
-    else if (handler_context->shutdown_HAL)
-        error_result = dbus_HAL_Shutdown();
 
     if (error_result != NULL)
         gtk_label_set_text(GTK_LABEL(handler_context->error_label), error_result);
@@ -206,8 +200,6 @@ static void reboot_clicked(GtkButton * button, HandlerContext * handler_context)
     }
     else if (handler_context->reboot_ConsoleKit)
         error_result = dbus_ConsoleKit_Restart();
-    else if (handler_context->reboot_HAL)
-        error_result = dbus_HAL_Reboot();
 
     if (error_result != NULL)
         gtk_label_set_text(GTK_LABEL(handler_context->error_label), error_result);
@@ -223,8 +215,6 @@ static void suspend_clicked(GtkButton * button, HandlerContext * handler_context
     lock_screen();
     if (handler_context->suspend_UPower)
         error_result = dbus_UPower_Suspend();
-    else if (handler_context->suspend_HAL)
-        error_result = dbus_HAL_Suspend();
 
     if (error_result != NULL)
         gtk_label_set_text(GTK_LABEL(handler_context->error_label), error_result);
@@ -240,8 +230,6 @@ static void hibernate_clicked(GtkButton * button, HandlerContext * handler_conte
     lock_screen();
     if (handler_context->hibernate_UPower)
         error_result = dbus_UPower_Hibernate();
-    else if (handler_context->hibernate_HAL)
-        error_result = dbus_HAL_Hibernate();
 
     if (error_result != NULL)
         gtk_label_set_text(GTK_LABEL(handler_context->error_label), error_result);
@@ -398,28 +386,6 @@ int main(int argc, char * argv[])
     {
         handler_context.hibernate_available = TRUE;
         handler_context.hibernate_UPower = TRUE;
-    }
-
-    /* Initialize capabilities of the HAL mechanism. */
-    if (!handler_context.shutdown_available && dbus_HAL_CanShutdown())
-    {
-        handler_context.shutdown_available = TRUE;
-        handler_context.shutdown_HAL = TRUE;
-    }
-    if (!handler_context.reboot_available && dbus_HAL_CanReboot())
-    {
-        handler_context.reboot_available = TRUE;
-        handler_context.reboot_HAL = TRUE;
-    }
-    if (!handler_context.suspend_available && dbus_HAL_CanSuspend())
-    {
-        handler_context.suspend_available = TRUE;
-        handler_context.suspend_HAL = TRUE;
-    }
-    if (!handler_context.hibernate_available && dbus_HAL_CanHibernate())
-    {
-        handler_context.hibernate_available = TRUE;
-        handler_context.hibernate_HAL = TRUE;
     }
 
     /* If we are under GDM, its "Switch User" is available. */

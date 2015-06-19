@@ -33,15 +33,4 @@ extern gboolean dbus_UPower_CanHibernate(void);
 extern char * dbus_UPower_Suspend(void);
 extern char * dbus_UPower_Hibernate(void);
 
-/* Interface to HAL for shutdown, reboot, suspend, and hibernate.
- * HAL is being replaced by the above two mechanisms; this support is legacy. */
-extern gboolean dbus_HAL_CanShutdown(void);
-extern gboolean dbus_HAL_CanReboot(void);
-extern gboolean dbus_HAL_CanSuspend(void);
-extern gboolean dbus_HAL_CanHibernate(void);
-extern char * dbus_HAL_Shutdown(void);
-extern char * dbus_HAL_Reboot(void);
-extern char * dbus_HAL_Suspend(void);
-extern char * dbus_HAL_Hibernate(void);
-
 #endif
