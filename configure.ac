@@ -92,14 +92,13 @@ AC_OUTPUT([
 ])
 
 echo
-echo LXSession.................................... : Version $VERSION
+echo SDE Session Manager.......................... : Version $VERSION
 echo
 echo Prefix....................................... : $prefix
 echo Linux DBUS support........................... : $use_dbus
 echo
 echo The binary will be installed in $prefix/bin
 echo
-echo http://lxde.org/
 echo
 echo Have fun!
 echo

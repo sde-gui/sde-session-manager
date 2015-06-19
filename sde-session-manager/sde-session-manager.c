@@ -260,7 +260,7 @@ usage:
                   "Usage:  lxsession [OPTIONS...]\n"
 				  "\t-d NAME\tspecify name of display (optional)\n"
 				  "\t-s NAME\tspecify name of the desktop session profile\n"
-                  "\t-e NAME\tspecify name of DE, such as LXDE, GNOME, or XFCE.\n"
+                  "\t-e NAME\tspecify name of DE, such as SDE, LXDE, GNOME, or XFCE.\n"
 				  "\t-r\t reload configurations (for Xsettings daemon)\n"
 				  "\t-n\t disable Xsettings daemon support\n"
 				  "\t-a\t autostart applications disable (window-manager mode only) \n" );
@@ -308,7 +308,7 @@ int main(int argc, char** argv)
     register_signals();
 
     if ( G_UNLIKELY(!session_name) )
-        session_name = "LXDE";
+        session_name = "SDE";
     g_setenv( "DESKTOP_SESSION", session_name, TRUE );
 
     if ( G_UNLIKELY(!de_name) )
