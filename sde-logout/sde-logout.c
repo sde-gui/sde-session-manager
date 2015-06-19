@@ -356,11 +356,11 @@ int main(int argc, char * argv[])
     memset(&handler_context, 0, sizeof(handler_context));
 
     /* Ensure that we are running under lxsession. */
-    const char * p = g_getenv("_LXSESSION_PID");
+    const char * p = g_getenv("_SDE_SESSION_MANAGER_PID");
     if (p != NULL) handler_context.lxsession_pid = atoi(p);
     if (handler_context.lxsession_pid == 0)
     {
-        g_print( _("Error: %s\n"), _("LXSession is not running."));
+        g_print( _("Error: %s\n"), _("SDE Session Manager is not running."));
         return 1;
     }
 

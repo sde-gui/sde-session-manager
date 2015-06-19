@@ -52,7 +52,7 @@ char* window_manager = NULL; /* will be accessed by settings-daemon.c */
 static char sm_env[] = "SESSION_MANAGER";
 */
 static char display_env[] = "DISPLAY";
-static char pid_env[] = "_LXSESSION_PID";
+static char pid_env[] = "_SDE_SESSION_MANAGER_PID";
 
 static char prog_name[]="sde-session-manager";
 static char autostart_filename[]="autostart";
