@@ -319,8 +319,9 @@ int main(int argc, char** argv)
 
 	/* Load desktop session config file */
 	kf = load_session_config(CONFIG_FILE_NAME);
-	if( !kf )
+	if (!kf)
 	{
+        fprintf(stderr, CONFIG_FILE_NAME " not found\n");
 		xevent_finalize();
 		return 1;
 	}
