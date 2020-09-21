@@ -1,3 +1,4 @@
+/* -%- indent-width: 4; use-tabs: no; -%- */
 /*
  *      settings-daemon.h - LXDE settings daemon
  *

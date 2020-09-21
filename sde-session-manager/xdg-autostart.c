@@ -1,3 +1,4 @@
+/* -%- indent-width: 4; use-tabs: no; -%- */
 /*
  *      autostart.c - Handle autostart spec of freedesktop.org
  *

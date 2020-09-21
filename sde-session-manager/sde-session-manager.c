@@ -1,3 +1,4 @@
+/* -%- indent-width: 4; use-tabs: no; -%- */
 /*
  *      Copyright 2008 PCMan <pcman.tw@gmail.com>
  *
@@ -102,25 +103,25 @@ GKeyFile* load_session_config( const char* config_filename )
     ret = g_key_file_load_from_file(kf, filename, 0, NULL);
     g_free( filename );
 
-	if( ! ret ) /* user specific file is not found */
-	{
-		/* load system-wide session config files */
-		for( dir = dirs; *dir; ++dir )
-		{
-			filename = g_build_filename( *dir, prog_name, session_name, config_filename, NULL );
-			ret = g_key_file_load_from_file(kf, filename, 0, NULL);
-			g_free( filename );
-			if(ret)
-				break;
-		}
-	}
+    if( ! ret ) /* user specific file is not found */
+    {
+        /* load system-wide session config files */
+        for( dir = dirs; *dir; ++dir )
+        {
+            filename = g_build_filename( *dir, prog_name, session_name, config_filename, NULL );
+            ret = g_key_file_load_from_file(kf, filename, 0, NULL);
+            g_free( filename );
+            if(ret)
+                break;
+        }
+    }
 
-	if( G_UNLIKELY(!ret) )
-	{
-		g_key_file_free(kf);
-		return NULL;
-	}
-	return kf;
+    if( G_UNLIKELY(!ret) )
+    {
+        g_key_file_free(kf);
+        return NULL;
+    }
+    return kf;
 }
 
 static void on_child_exit( GPid pid, gint status, gchar* cmd )
@@ -258,19 +259,19 @@ static void parse_options(int argc, char** argv)
 usage:
         fprintf ( stderr,
                   "Usage:  lxsession [OPTIONS...]\n"
-				  "\t-d NAME\tspecify name of display (optional)\n"
-				  "\t-s NAME\tspecify name of the desktop session profile\n"
+                  "\t-d NAME\tspecify name of display (optional)\n"
+                  "\t-s NAME\tspecify name of the desktop session profile\n"
                   "\t-e NAME\tspecify name of DE, such as SDE, LXDE, GNOME, or XFCE.\n"
-				  "\t-r\t reload configurations (for Xsettings daemon)\n"
-				  "\t-n\t disable Xsettings daemon support\n"
-				  "\t-a\t autostart applications disable (window-manager mode only) \n" );
+                  "\t-r\t reload configurations (for Xsettings daemon)\n"
+                  "\t-n\t disable Xsettings daemon support\n"
+                  "\t-a\t autostart applications disable (window-manager mode only) \n" );
         exit(1);
 }
 
 int main(int argc, char** argv)
 {
     char str[ 16 ];
-	GKeyFile* kf;
+    GKeyFile* kf;
 
     display_name = g_getenv( display_env );
     if( ! display_name )
@@ -291,12 +292,12 @@ int main(int argc, char** argv)
         send_internal_command( LXS_RELOAD );
         return 0;
     }
-	else if( G_UNLIKELY( !single_instance_check()) )
-	{
-		/* only one instance is allowed for each X. */
-		fprintf(stderr, "Only one %s can be executed at a time\n", prog_name);
-		return 1;
-	}
+    else if( G_UNLIKELY( !single_instance_check()) )
+    {
+        /* only one instance is allowed for each X. */
+        fprintf(stderr, "Only one %s can be executed at a time\n", prog_name);
+    return 1;
+    }
 
     /* set pid */
     g_snprintf( str, 16, "%d", getpid() );
@@ -304,7 +305,7 @@ int main(int argc, char** argv)
 
     main_loop = g_main_loop_new( NULL, TRUE );
 
-	/* setup signal handlers */
+    /* setup signal handlers */
     register_signals();
 
     if ( G_UNLIKELY(!session_name) )
@@ -317,21 +318,21 @@ int main(int argc, char** argv)
 
     /* FIXME: load environment variables? */
 
-	/* Load desktop session config file */
-	kf = load_session_config(CONFIG_FILE_NAME);
-	if (!kf)
-	{
+    /* Load desktop session config file */
+    kf = load_session_config(CONFIG_FILE_NAME);
+    if (!kf)
+    {
         fprintf(stderr, CONFIG_FILE_NAME " not found\n");
-		xevent_finalize();
-		return 1;
-	}
+        xevent_finalize();
+        return 1;
+    }
 
-	window_manager = g_key_file_get_string( kf, "Session", "window_manager", NULL );
+    window_manager = g_key_file_get_string( kf, "Session", "window_manager", NULL );
 
     if( G_LIKELY(!no_settings) )
         start_settings_daemon(kf);
 
-	g_key_file_free(kf);
+    g_key_file_free(kf);
 
     /* start desktop session and load autostart applications */
     start_session();
@@ -339,7 +340,7 @@ int main(int argc, char** argv)
     g_main_loop_run( main_loop );
     g_main_loop_unref( main_loop );
 
-	xevent_finalize();
+    xevent_finalize();
 
     return 0;
 }

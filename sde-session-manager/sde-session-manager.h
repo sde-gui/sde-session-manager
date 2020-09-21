@@ -1,3 +1,4 @@
+/* -%- indent-width: 4; use-tabs: no; -%- */
 /*
  *      lxsession.h
  *      

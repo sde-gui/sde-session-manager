@@ -1,3 +1,4 @@
+/* -%- indent-width: 4; use-tabs: no; -%- */
 /*
  * Copyright © 2001 Red Hat, Inc.
  *

@@ -1,3 +1,4 @@
+/* -%- indent-width: 4; use-tabs: no; -%- */
 /**
  * Copyright (c) 2010 LxDE Developers, see the file AUTHORS for details.
  *

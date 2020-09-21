@@ -1,4 +1,5 @@
 #!/bin/sh
+# -%- indent-width: 4; use-tabs: no; -%-
 #
 # sde-lock-screen - try to lock the screen
 #

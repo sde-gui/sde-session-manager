@@ -1,3 +1,4 @@
+/* -%- indent-width: 4; use-tabs: no; -%- */
 /*
  *      lxde-settings.c - XSettings daemon of LXDE
  *
