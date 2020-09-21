@@ -185,8 +185,8 @@ static void load_default_apps( const char* filename )
 }
 
 /*
- * system wide default config is /etc/xdg/lxsession/SESSION_NAME/desktop.conf
- * system wide default apps are listed in /etc/xdg/lxsession/SESSION_NAME/autostart
+ * system wide default config is /etc/xdg/PROGRAM_NAME/SESSION_NAME/desktop.conf
+ * system wide default apps are listed in /etc/xdg/PROGRAM_NAME/SESSION_NAME/autostart
  */
 void start_session()
 {
@@ -199,23 +199,21 @@ void start_session()
         run_app( window_manager, TRUE );
 
     if( G_UNLIKELY( !no_autostart ) )
-
     {
-    /* load system-wide default apps */
-    for( dir = dirs; *dir; ++dir )
-    {
-        filename = g_build_filename( *dir, prog_name, session_name, autostart_filename, NULL );
+        /* load system-wide default apps */
+        for( dir = dirs; *dir; ++dir )
+        {
+            filename = g_build_filename( *dir, prog_name, session_name, autostart_filename, NULL );
+            load_default_apps( filename );
+            g_free( filename );
+        }
+        /* load user-specific default apps */
+        filename = g_build_filename( g_get_user_config_dir(), prog_name, session_name, autostart_filename, NULL );
         load_default_apps( filename );
         g_free( filename );
-    }
-    /* load user-specific default apps */
-    filename = g_build_filename( g_get_user_config_dir(), prog_name, session_name, autostart_filename, NULL );
-    load_default_apps( filename );
-    g_free( filename );
 
-    /* Support autostart spec of freedesktop.org if not disable*/
-    xdg_autostart( session_name );
-
+        /* Support autostart spec of freedesktop.org if not disable*/
+        xdg_autostart( session_name );
     }
 }
 
@@ -238,24 +236,24 @@ static void parse_options(int argc, char** argv)
                 session_name = argv[i];
                 continue;
             case 'n': /* disable xsettings daemon */
-				no_settings = TRUE;
+                no_settings = TRUE;
                 continue;
             case 'e': /* DE name */
                 if ( ++i >= argc ) goto usage;
                 de_name = argv[i];
                 continue;
             case 'r':
-				reload_settings = TRUE;
-				continue;
+                reload_settings = TRUE;
+                continue;
             case 'a': /* autostart disable */
                 no_autostart = TRUE;
                 continue;
-			default:
-				goto usage;
+            default:
+                goto usage;
             }
         }
-	}
-	return;
+    }
+    return;
 usage:
         fprintf ( stderr,
                   "Usage:  lxsession [OPTIONS...]\n"

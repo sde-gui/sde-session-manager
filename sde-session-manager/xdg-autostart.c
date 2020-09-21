@@ -206,28 +206,28 @@ static void launch_autostart_file( const char* desktop_id, const char* desktop_f
             }
             g_strfreev( only_show_in );
         }
-		else /* OnlyShowIn and NotShowIn cannot be set at the same time. */
-		{
-			/* check if this desktop entry is not allowed in our session */
-			not_show_in = g_key_file_get_string_list( kf, DesktopEntry, "NotShowIn", &n, NULL );
-			if( not_show_in )
-			{
-				/* The format of this list is like:  NotShowIn=KDE;IceWM */
-				gsize i = 0;
-				for( i = 0; i < n; ++i )
-				{
-					/* Only start this program if we are in the "OnlyShowIn" list */
-					if( 0 == strcmp( de_name, not_show_in[ i ] ) )
-						break;
-				}
-				if( i < n )    /* our session name is found in the "NotShowIn" list */
-				{
-					g_strfreev( not_show_in );
-					return;   /* read next desktop file */
-				}
-				g_strfreev( not_show_in );
-			}
-		}
+        else /* OnlyShowIn and NotShowIn cannot be set at the same time. */
+        {
+            /* check if this desktop entry is not allowed in our session */
+            not_show_in = g_key_file_get_string_list( kf, DesktopEntry, "NotShowIn", &n, NULL );
+            if( not_show_in )
+            {
+                /* The format of this list is like:  NotShowIn=KDE;IceWM */
+                gsize i = 0;
+                for( i = 0; i < n; ++i )
+                {
+                    /* Only start this program if we are in the "OnlyShowIn" list */
+                    if( 0 == strcmp( de_name, not_show_in[ i ] ) )
+                        break;
+                }
+                if( i < n )    /* our session name is found in the "NotShowIn" list */
+                {
+                    g_strfreev( not_show_in );
+                    return;   /* read next desktop file */
+                }
+                g_strfreev( not_show_in );
+            }
+        }
 
         exec = g_key_file_get_string( kf, DesktopEntry, "TryExec", NULL );
         if( G_UNLIKELY(exec) ) /* If we are asked to tryexec first */
@@ -257,7 +257,7 @@ static void launch_autostart_file( const char* desktop_id, const char* desktop_f
              *  very low, so just omit it.
              */
 
-			/* FIXME: Exec key should be handled correctly */
+            /* FIXME: Exec key should be handled correctly */
 
             /* launch the program */
             if( g_spawn_command_line_async( exec, NULL ) )
